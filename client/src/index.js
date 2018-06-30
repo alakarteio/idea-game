@@ -3,20 +3,35 @@ import store from './store'
 
 const app = new Application()
 
+let players = {}
 
 const printPlayers = () => {
-  const players = store.data.players.getAsArray()
+  // remove old players
+  Object.entries(players).forEach(([id, rectangle]) => {
+    const toRemove = !store.data.players.hasKey(id)
+    if (toRemove) {
+      delete players[id]
+      app.stage.removeChild(rectangle)
+    }
+  })
 
-  players.forEach(({ position }) => {
-    console.log('draw a player')
-    const rectangle = new Graphics();
-    rectangle.lineStyle(4, 0xFF3300, 1);
-    rectangle.beginFill(0xff0000);
-    rectangle.drawRect(0, 0, 64, 64);
-    rectangle.endFill();
-    rectangle.x = position.x;
-    rectangle.y = position.y;
-    app.stage.addChild(rectangle);
+  // for all remaining players
+  store.data.players.getAsArray().forEach((player) => {
+    let rectangle = players[player.id]
+
+    if (!rectangle) {
+      rectangle = new Graphics();
+      rectangle.lineStyle(4, 0xFF3300, 1);
+      rectangle.beginFill(0xff0000);
+      rectangle.drawRect(0, 0, 64, 64);
+      rectangle.endFill();
+
+      players[player.id] = rectangle
+      app.stage.addChild(rectangle);
+    }
+
+    rectangle.x = player.position.x;
+    rectangle.y = player.position.y;
   })
 }
 
