@@ -7,5 +7,9 @@ export default {
   },
   client: {
     id: types.string(),
+    velocity: {
+      x: types.object({ defaultData: 0 }), // TODO: make it types.number
+      y: types.object({ defaultData: 0 }),
+    },
   }
 }

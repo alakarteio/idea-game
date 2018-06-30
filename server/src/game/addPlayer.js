@@ -28,6 +28,10 @@ module.exports = [
         x: random(800),
         y: random(600),
       },
+      velocity: {
+        x: 0,
+        y: 0,
+      },
     })
   }),
 
