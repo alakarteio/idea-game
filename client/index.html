@@ -4,25 +4,13 @@
   <script>
     $(() => {
       var socket = io('http://localhost:3000');
-      socket.on('init', (state) => {
-        console.log({ state })
+
+      socket.emit('k-ramel/action', { type: 'test' })
+      socket.on('k-ramel/action', action => {
+        console.log(action.type, action)
       })
 
-      let ping = null
-      setInterval(() => {
-        if (ping === null) {
-          ping = Date.now()
-          socket.emit('my-ping', 'dummy')
-        }
-      }, 1000)
-      socket.on('my-pong', () => {
-        console.log(`ping is ${Date.now() - ping}`)
-        ping = null
-      })
-
-      socket.on('disconnect', () => {
-        ping = null
-      })
+      socket.emit('k-ramel/action', { type: '@@game/ping' })
     });
   </script>
 </html>
