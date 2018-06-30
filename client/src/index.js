@@ -21,8 +21,7 @@ const printPlayers = () => {
 
     if (!rectangle) {
       rectangle = new Graphics();
-      rectangle.lineStyle(4, 0xFF3300, 1);
-      rectangle.beginFill(0xff0000);
+      rectangle.beginFill(player.id === store.client.id.get() ? 0x00ff00 : 0xff0000);
       rectangle.drawRect(0, 0, 64, 64);
       rectangle.endFill();
 
