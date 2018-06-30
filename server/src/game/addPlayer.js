@@ -19,6 +19,10 @@ module.exports = [
 
     store.data.players.add({ id: socketId, username })
 
-    io.emit(socketId)({ type: '@@io/id', payload: socketId })
-  })
+    io.emit(socketId)({ type: '@@krf/SET>CLIENT>ID', payload: socketId })
+  }),
+
+  when('@@io/disconnect')(({ socketId }, store) => {
+    store.data.players.remove(socketId)
+  }),
 ]

@@ -2,7 +2,7 @@ const socketIo = require('socket.io')
 const createStore = require('./store')
 const game = require('./game')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 const io = socketIo(PORT, {
   serveClient: false,

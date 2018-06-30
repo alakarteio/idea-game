@@ -3,7 +3,8 @@ const { broadcast, log } = require('./reactions')
 
 const PRIVATE_ACTIONS = [
   '@@krml/EXCEPTION',
-  '@@game/ping'
+  '@@game/ping',
+  '@@krf/SET>CLIENT>ID',
 ]
 
 module.exports = [

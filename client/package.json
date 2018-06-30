@@ -5,5 +5,14 @@
   "repository": "git@github.com:alakarteio/idea-game.git",
   "author": "Fabien JUIF <fabien.juif@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "k-ramel": "^0.11.0",
+    "pixi.js": "^4.8.1",
+    "socket.io-client": "^2.1.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.14.0",
+    "webpack-command": "^0.3.1"
+  }
 }
