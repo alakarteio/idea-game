@@ -19,7 +19,6 @@ module.exports = [
   when('@@io/connect')(({ socketId }, store, { io }) => {
     const username = USERNAMES[random(USERNAMES.length - 1)]
 
-    io.emit(socketId)({ type: '@@krf/SET>CLIENT>ID', payload: socketId })
     io.emit(socketId)({ type: '@@krf/SET>DATA>PLAYERS', payload: store.data.players.getAsArray() })
 
     store.data.players.add({

@@ -34,10 +34,9 @@ const printPlayers = () => {
   })
 }
 
-// FIXME: don't use setTimeout, but wait the document to be ready
-setTimeout(() => {
+document.addEventListener('DOMContentLoaded', () => {
   window.document.body.appendChild(app.view)
 
   printPlayers()
   store.subscribe(printPlayers)
-}, 1000)
+})
