@@ -70,12 +70,26 @@ const createPlayers = () => {
   })
 }
 
+let lastSync = Date.now()
 const updatePlayers = () => {
   store.data.players.getAsArray().forEach((player) => {
     let rectangle = players[player.id]
 
     if (!rectangle) return
 
+    // update with velocity when we can
+    // but every 500ms we synchronize watches (we use position)
+    if (Date.now() - lastSync > 500) {
+      console.log('SYNC')
+      lastSync = Date.now()
+      rectangle.x = player.position.x
+      rectangle.y = player.position.y
+
+      // synchronize
+      return
+    }
+
+    // update with velocity (most of the time)
     rectangle.x += player.velocity.x
     rectangle.y += player.velocity.y
   })
@@ -83,10 +97,6 @@ const updatePlayers = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   window.document.body.appendChild(app.view)
-
-  // me
-  const getId = () => store.client.id.get()
-  const getVelocity = () => store.data.players.get(getId()).velocity
 
   // print players
   createPlayers()
