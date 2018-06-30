@@ -5,12 +5,27 @@
     $(() => {
       var socket = io('http://localhost:3000');
 
-      socket.emit('k-ramel/action', { type: 'test' })
+      let timer = null
       socket.on('k-ramel/action', action => {
-        console.log(action.type, action)
+        switch (action.type) {
+          case '@@game/ping': {
+            console.log(`ping ! [${Date.now() - timer}, ${Date.now() - action.payload}]`)
+            timer = null
+            break
+          }
+          default: {
+            console.log(action.type, action)
+            break
+          };
+        }
       })
 
-      socket.emit('k-ramel/action', { type: '@@game/ping' })
+      setInterval(() => {
+        if (timer === null) {
+          timer = Date.now()
+          socket.emit('k-ramel/action', { type: '@@game/ping' })
+        }
+      }, 1000)
     });
   </script>
 </html>

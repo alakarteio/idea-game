@@ -5,7 +5,10 @@ module.exports = io => ({
 
       // uppon connection, all messages are send to k-ramel, with socketId added
       socket.on('k-ramel/action', dispatch)
+
+      // disconnect & connect info
       socket.on('disconnect', () => dispatch({ type: '@@io/disconnect' }))
+      dispatch({ type: '@@io/connect' })
     })
   },
 
@@ -15,9 +18,10 @@ module.exports = io => ({
     // - all socket if first function parameter is null
     // - only one socket if the first function parameter is a string
     // - to all socket given with the first function parameter (array of socket id)
-    emit: (socketId) => (action) => {
+    emit: (socketId, { volatile = false } = {}) => (action) => {
       if (socketId === undefined) {
-        io.volatile.emit('k-ramel/action', action)
+        if (volatile) io.volatile.emit('k-ramel/action', action)
+        else io.emit('k-ramel/action', action)
         return
       }
 
@@ -25,7 +29,10 @@ module.exports = io => ({
 
       Object.keys(io.clients().sockets)
         .filter(id => ids.includes(id))
-        .forEach(id => io.clients().sockets[id].volatile.emit('k-ramel/action', action))
+        .forEach((id) => {
+          if (volatile) io.clients().sockets[id].volatile.emit('k-ramel/action', action)
+          else io.clients().sockets[id].emit('k-ramel/action', action)
+        })
     },
   })
 })
