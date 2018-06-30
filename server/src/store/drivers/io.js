@@ -19,9 +19,11 @@ module.exports = io => ({
     // - only one socket if the first function parameter is a string
     // - to all socket given with the first function parameter (array of socket id)
     emit: (socketId, { volatile = false } = {}) => (action) => {
+      const message = ['k-ramel/action', { ...action, server: true }]
+
       if (socketId === undefined) {
-        if (volatile) io.volatile.emit('k-ramel/action', action)
-        else io.emit('k-ramel/action', action)
+        if (volatile) io.volatile.emit(...message)
+        else io.emit(...message)
         return
       }
 
@@ -30,8 +32,8 @@ module.exports = io => ({
       Object.keys(io.clients().sockets)
         .filter(id => ids.includes(id))
         .forEach((id) => {
-          if (volatile) io.clients().sockets[id].volatile.emit('k-ramel/action', action)
-          else io.clients().sockets[id].emit('k-ramel/action', action)
+          if (volatile) io.clients().sockets[id].volatile.emit(...message)
+          else io.clients().sockets[id].emit(...message)
         })
     },
   })
