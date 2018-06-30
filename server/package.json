@@ -1,0 +1,13 @@
+{
+  "name": "idea-game-server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:alakarteio/idea-game.git",
+  "author": "Fabien JUIF <fabien.juif@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "koa": "^2.5.1",
+    "socket.io": "^2.1.1"
+  }
+}
