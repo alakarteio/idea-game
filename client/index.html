@@ -4,9 +4,24 @@
   <script>
     $(() => {
       var socket = io('http://localhost:3000');
-      socket.emit('chat message', 'yo');
-      socket.on('some event', (data) => {
-        console.log({ data })
+      socket.on('init', (state) => {
+        console.log({ state })
+      })
+
+      let ping = null
+      setInterval(() => {
+        if (ping === null) {
+          ping = Date.now()
+          socket.emit('my-ping', 'dummy')
+        }
+      }, 1000)
+      socket.on('my-pong', () => {
+        console.log(`ping is ${Date.now() - ping}`)
+        ping = null
+      })
+
+      socket.on('disconnect', () => {
+        ping = null
       })
     });
   </script>

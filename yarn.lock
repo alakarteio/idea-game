@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@k-ramel/driver-http@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.11.0.tgz#3121927e26eafe0350f668bf8314aadf4c48ccbf"
+
 accepts@~1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.5.tgz#eb777df6011723a3b14e8a72c0805c8e86746bd2"
@@ -124,6 +128,36 @@ isarray@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-2.0.1.tgz#a37d94ed9cda2d59865c9f76fe596ee1f338741e"
 
+js-tokens@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
+
+k-ramel@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.11.0.tgz#a051bb9718160f42d508f1197b14956eb3b30c68"
+  dependencies:
+    "@k-ramel/driver-http" "^0.11.0"
+    k-redux-factory "5.0.1"
+    redux "3.7.2"
+
+k-redux-factory@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-5.0.1.tgz#1507e0e23570cffa38f358206eb4f83bdf531080"
+
+lodash-es@^4.2.1:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
+
+lodash@^4.2.1:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+
+loose-envify@^1.1.0:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
+  dependencies:
+    js-tokens "^3.0.0"
+
 mime-db@~1.33.0:
   version "1.33.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.33.0.tgz#a3492050a5cb9b63450541e39d9788d2272783db"
@@ -161,6 +195,15 @@ parseuri@0.0.5:
 prettier@^1.13.7:
   version "1.13.7"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
+
+redux@3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
+  dependencies:
+    lodash "^4.2.1"
+    lodash-es "^4.2.1"
+    loose-envify "^1.1.0"
+    symbol-observable "^1.0.3"
 
 safe-buffer@~5.1.0:
   version "5.1.2"
@@ -207,6 +250,10 @@ socket.io@^2.1.1:
     socket.io-adapter "~1.1.0"
     socket.io-client "2.1.1"
     socket.io-parser "~3.2.0"
+
+symbol-observable@^1.0.3:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
 to-array@0.1.4:
   version "0.1.4"
