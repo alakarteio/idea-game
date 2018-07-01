@@ -5,7 +5,6 @@ const PRIVATE_ACTIONS = [
   '@@krml/EXCEPTION',
   '@@game/ping',
   '@@krf/SET>CLIENT>ID',
-  '@@krf/UPDATE>DATA>PLAYERS',
 ]
 
 module.exports = [

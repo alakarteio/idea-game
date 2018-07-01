@@ -6,8 +6,9 @@ module.exports = [
     const players = store.data.players.getAsArray()
 
     players.forEach(player => {
+      if (player.velocity.x === 0 && player.velocity.y === 0) return
       store.data.players.update({
-        ...player,
+        id: player.id,
         position: {
           x: player.position.x + player.velocity.x,
           y: player.position.y + player.velocity.y,
@@ -20,8 +21,8 @@ module.exports = [
     const player = store.data.players.get(socketId)
     if (!player) return
 
-    store.data.players.add({
-      ...player,
+    store.data.players.update({
+      id: socketId,
       velocity: { ...player.velocity, x: payload },
     })
   }),
@@ -29,8 +30,8 @@ module.exports = [
     const player = store.data.players.get(socketId)
     if (!player) return
 
-    store.data.players.add({
-      ...player,
+    store.data.players.update({
+      id: socketId,
       velocity: { ...player.velocity, y: payload },
     })
   }),
